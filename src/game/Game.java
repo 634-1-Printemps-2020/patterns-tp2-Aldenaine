@@ -23,7 +23,8 @@ public class Game {
      * @param player le nouveau joueur
      */
     public void addPlayer(Player player) {
-         history.put(player, null);
+        List<CoinState> lst = new ArrayList<>();
+         history.put(player, lst);
 
     }
 
@@ -31,10 +32,15 @@ public class Game {
      * Faire joueur tous les joueurs et stocker chaque partie dans history
      */
     public void play() {
-        for(List<CoinState> coinList: history.values()){
-            coin.throwCoin();
-            coinList.add(coin.getState());
+        List<CoinState> lst;
+        for(Player p : history.keySet()){
+            lst=history.get(p);
+            while(rules.checkWin(lst)==false){
+                p.play(coin);
+                lst.add(coin.getState());
+            }
         }
+        //Rules win = Rules.getRules();
     }
 
     /**

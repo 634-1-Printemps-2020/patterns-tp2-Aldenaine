@@ -5,7 +5,11 @@ import materials.CoinState;
 import java.util.List;
 
 public class Rules {
-
+  private static Rules rules = new Rules();
+  private Rules(){}
+  public static Rules getRules(){
+    return rules;
+  }
   /**
    * Cette méthode permet de déterminer si une suite d'états de pièce permet de gagner à une partie
    * @param states liste d'états pour un joueur
