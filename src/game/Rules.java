@@ -12,7 +12,11 @@ public class Rules {
    * @return true si un joueur a gagné, false sinon
    */
   public boolean checkWin(List<CoinState> states) {
-    // TODO: Votre code ici
+    int i = 0;
+    for(CoinState coin : states){
+      if(coin.equals(CoinState.HEADS)){i++;}
+      if(i==3){return true;}
+    }
     return false;
   }
 }

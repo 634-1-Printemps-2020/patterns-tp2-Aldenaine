@@ -1,5 +1,7 @@
 package materials;
 
+import java.util.Random;
+
 public class Coin {
 
   private CoinState coinState;
@@ -9,7 +11,10 @@ public class Coin {
    * 50% de probabilité d'obtenir HEADS, 50% de probabilité d'obtenir TAILS
    */
   public void throwCoin() {
-    // TODO : Votre code ici
+    Random randomNum = new Random();
+    int result = randomNum.nextInt(2);
+    if(result==0) {this.coinState = CoinState.HEADS;}
+    else{this.coinState=CoinState.TAILS;}
   }
 
   public CoinState getState() {

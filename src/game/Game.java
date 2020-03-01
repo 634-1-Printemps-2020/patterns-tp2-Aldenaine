@@ -23,14 +23,18 @@ public class Game {
      * @param player le nouveau joueur
      */
     public void addPlayer(Player player) {
-      // TODO: Votre code ici
+         history.put(player, null);
+
     }
 
     /**
      * Faire joueur tous les joueurs et stocker chaque partie dans history
      */
     public void play() {
-      // TODO: Votre code ici
+        for(List<CoinState> coinList: history.values()){
+            coin.throwCoin();
+            coinList.add(coin.getState());
+        }
     }
 
     /**
@@ -49,8 +53,7 @@ public class Game {
      * @return Map contenant chaque joueur et la liste des ses lancers
      */
     public Map<Player, List<CoinState>> getHistory() {
-      // TODO: Votre code ici
-      return null;
+      return this.history;
     }
 
 
@@ -61,8 +64,7 @@ public class Game {
      * @return la liste des lancers d'un joueur
      */
     public List<CoinState> getSpecificHistory(Player player) {
-      // TODO: Votre code ici
-      return null;
+      return history.get(player);
     }
 
 }
