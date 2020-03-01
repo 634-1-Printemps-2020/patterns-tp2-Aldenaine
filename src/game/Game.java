@@ -12,7 +12,7 @@ public class Game {
     private Rules rules;
     private Coin coin;
     private Map<Player, List<CoinState>> history;
-
+    private int total, fewer, most;
     public Game() {
         history = new HashMap<>();
     }
@@ -33,14 +33,21 @@ public class Game {
      */
     public void play() {
         List<CoinState> lst;
+        total = 0;
+        fewer = -1;
+        most = -1;
+        coin = Coin.getCoin();
+        rules = Rules.getRules();
         for(Player p : history.keySet()){
             lst=history.get(p);
-            while(rules.checkWin(lst)==false){
+            while(!rules.checkWin(lst)){
                 p.play(coin);
                 lst.add(coin.getState());
+                total++;
             }
+            if(lst.size()<fewer){fewer=lst.size();}
+            if(lst.size()>most){most=lst.size();}
         }
-        //Rules win = Rules.getRules();
     }
 
     /**
@@ -49,8 +56,8 @@ public class Game {
      * @return Statistics
      */
     public Statistics getStatistics() {
-      // TODO: Votre code ici
-      return null;
+
+      return new Statistics(total/history.size(), fewer, most, total);
     }
 
     /**
